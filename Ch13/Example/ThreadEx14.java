@@ -2,9 +2,9 @@ package Example;
 
 import javax.swing.*;
 
-public class ThreadEx13 {
+public class ThreadEx14 {
     public static void main(String[] args) throws Exception {
-        ThreadEx13_1 th1 = new ThreadEx13_1();
+        ThreadEx14_1 th1 = new ThreadEx14_1();
         th1.start();
 
         String input = JOptionPane.showInputDialog("아무 값이나 입력하세요.");
@@ -14,13 +14,16 @@ public class ThreadEx13 {
     }
 }
 
-class ThreadEx13_1 extends Thread {
+class ThreadEx14_1 extends Thread {
     public void run() {
         int i = 10;
 
         while (i != 0 && !isInterrupted()) {
             System.out.println(i--);
-            for (long x = 0; x < 2500000000L; x++); // 시간지연
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {}
         }
         System.out.println("카운트가 중료되었습니다.");
     }
