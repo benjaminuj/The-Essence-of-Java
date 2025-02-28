@@ -1,6 +1,15 @@
 package Example;
 
 public class ThreadEx18 {
+    public static void main(String[] args) {
+        ThreadEx18_1 th1 = new ThreadEx18_1("*");
+        ThreadEx18_1 th2 = new ThreadEx18_1("**");
+        ThreadEx18_1 th3 = new ThreadEx18_1("***");
+        th1.start();
+        th2.start();
+        th3.start();
+    }
+
 }
 
 class ThreadEx18_1 implements Runnable {
@@ -30,5 +39,7 @@ class ThreadEx18_1 implements Runnable {
         }
         System.out.println(name + " - stopped");
     }
+
+    public void start() {th.start();}
 }
 
