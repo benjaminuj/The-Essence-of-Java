@@ -8,8 +8,21 @@ public class ThreadEx18 {
         th1.start();
         th2.start();
         th3.start();
-    }
 
+        try {
+            Thread.sleep(2000);
+            th1.suspend();
+            Thread.sleep(2000);
+            th2.suspend();
+            Thread.sleep(3000);
+            th1.resume();
+            Thread.sleep(3000);
+            th1.stop();
+            th2.stop();
+            Thread.sleep(2000);
+            th3.stop();
+        } catch (InterruptedException e) {}
+    }
 }
 
 class ThreadEx18_1 implements Runnable {
@@ -40,6 +53,16 @@ class ThreadEx18_1 implements Runnable {
         System.out.println(name + " - stopped");
     }
 
+    public void suspend() {
+        suspended = true;
+        th.interrupt();
+        System.out.println(th.getName() + " - interrupt() by suspend()");
+    }
+    public void stop() {
+        stopped = true;
+        th.interrupt();
+        System.out.println(th.getName() + " - interrupt() by stop()");
+    }
+    public void resume() {suspended = false;}
     public void start() {th.start();}
 }
-
